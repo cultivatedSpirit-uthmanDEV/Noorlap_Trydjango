@@ -1,0 +1,13 @@
+$ venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+.DS_Store
+bash: venv/: Is a directory
+bash: __pycache__/: No such file or directory
+bash: *.pyc: command not found
+bash: db.sqlite3: command not found
+bash: .env: command not found
+bash: .DS_Store: command not found
+(venv) 
