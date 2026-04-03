@@ -11,8 +11,10 @@ def home_view(request):
    Take in a request (Django sends request)
    Return HTML as a response (We pick to return the response)
   """
-  number = random.randint(10,200000)
-  name = 'Uthman'
+  number = random.randint(10,200000) # pseudocode
+  name = 'Uthman' # hardcode
+
+
    #Django Template
   H1_string = f"""
   <h1>Hello {name} - {number}</h1>"""
