@@ -6,7 +6,7 @@ To render html web pages
 import random
 from django.http import HttpResponse
 
-
+from django.template.loader import render_to_string
 from articles.models import Articles
 
 
@@ -27,15 +27,28 @@ def home_view(request):
 
 
 
+   
+
+  context = {
+    "title": article_obj.title, 
+    "content": article_obj.content,
+    "id" : article_obj.id
+
+  }
    #Django Template
-  H1_string = f"""
-  <h1>Hello {article_title} - {article_content} ( id:{ article_obj.id})!</h1>"""
 
-  p_string = f"""
-  <p>Hello {name} - {random_number}</p>"""
+   
+  #tmpl = get_template("home-view.html")
+  # tmpl_string = tmpl.render(context=context)
 
-  HTML_STRING = H1_string + p_string
+  H1_string = render_to_string("home-view.html",context = context)
+
+  #H1_string = """  
+  #<h1>Hello {title} - {content} 
+  #( id:{id})!</h1>
+  #<p>{content}</p>""".format(**context)
+
   
 
   print(1000 * 9)
-  return HttpResponse(HTML_STRING)
+  return HttpResponse(H1_string)
