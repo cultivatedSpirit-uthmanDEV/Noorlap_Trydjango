@@ -24,12 +24,15 @@ def home_view(request):
   article_obj = Articles.objects.get(id = random_number)
   article_content = article_obj.content
   article_title = article_obj.title
+  article_list = Articles.objects.all()
+  Query_set = article_list #[103,105,108,290]
 
 
 
    
 
   context = {
+    "Query_set" : article_list,
     "title": article_obj.title, 
     "content": article_obj.content,
     "id" : article_obj.id
@@ -40,6 +43,9 @@ def home_view(request):
    
   #tmpl = get_template("home-view.html")
   # tmpl_string = tmpl.render(context=context)
+
+ 
+  
 
   H1_string = render_to_string("home-view.html",context = context)
 
