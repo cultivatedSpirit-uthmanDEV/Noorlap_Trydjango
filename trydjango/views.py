@@ -10,12 +10,18 @@ from django.template.loader import render_to_string
 from articles.models import Articles
 
 
+def articles_home_view(request):
+  return HttpResponse
 
-def home_view(request):
+
+
+def home_view(request, id, *args, **kwargs):
   """
    Take in a request (Django sends request)
    Return HTML as a response (We pick to return the response)
   """
+
+  print(args, kwargs)
   random_number = random.randint(1,4) # pseudocode
   name = 'Uthman' # hardcode
 
