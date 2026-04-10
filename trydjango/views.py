@@ -15,7 +15,7 @@ def articles_home_view(request):
 
 
 
-def home_view(request, id, *args, **kwargs):
+def home_view(request,  *args, **kwargs):
   """
    Take in a request (Django sends request)
    Return HTML as a response (We pick to return the response)
