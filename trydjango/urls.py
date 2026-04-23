@@ -32,5 +32,6 @@ urlpatterns = [
     path('', home_view),   # home , index , root
     path('admin/', admin.site.urls),
     path('login/', views.login_view),
+    path('logout/', views.logout_view),
     
 ]

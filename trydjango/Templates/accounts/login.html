@@ -3,7 +3,7 @@
 
 
 {% block content %}
-
+{% if not request.user.is_authenticated %}
 <form method="POST" style="margin: 10px;">
   {% csrf_token %}
   {% if error %}
@@ -18,6 +18,11 @@
     placeholder="password"/> 
   </div>
   <button type="submit">Login</button>
+
+{% else %}
+  <p>You're already logged in, would you like to logout? <a href='/logout/'>Logout</a>
+  </p>
+{% endif %}
 
 
 </form>
