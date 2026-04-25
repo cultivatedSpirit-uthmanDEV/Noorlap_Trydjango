@@ -24,27 +24,46 @@ def articles_search_view(request):
         }
     return render(request, "articles/search.html",context=context)
 
-@login_required
 def articles_create_view(request):
-    form = ArticleForm() 
+    form = ArticleForm(request.POST or None) 
     context = {
         "form": form
     }
-    if request.method == "POST":
-        form = ArticleForm(request.POST)
-        context['form'] = form
-        if form.is_valid():
-            title = form.cleaned_data.get("title")
-            content = form.cleaned_data.get("content")
-            title = request.POST.get("title")
-            content = request.POST.get("content")
-            #print(title, content)
-            article_object = Articles.objects.create(title=title, content=content)
-            context['object'] = article_object
-            context['content'] = content
-            context['created'] = True
+    
+    if form.is_valid():
+        title = form.cleaned_data.get("title")
+        content = form.cleaned_data.get("content")
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        #print(title, content)
+        article_object = Articles.objects.create(title=title, content=content)
+        context['object'] = article_object
+        context['content'] = content
+        context['created'] = True
         
     return render(request, "articles/create.html", context=context )
+
+@login_required
+#def articles_create_view(request):
+ #   form = ArticleForm() 
+  #  context = {
+   #     "form": form
+    #}
+    #if request.method == "POST":
+     #   form = ArticleForm(request.POST)
+      #  context['form'] = form
+       # if form.is_valid():
+        #    title = form.cleaned_data.get("title")
+         #   content = form.cleaned_data.get("content")
+          #  title = request.POST.get("title")
+           # content = request.POST.get("content")
+            ##print(title, content)
+            #article_object = Articles.objects.create(title=title, content=content)
+            #context['object'] = article_object
+            #context['content'] = content
+            #context['created'] = True
+        
+    #return render(request, "articles/create.html", context=context )
 
 def articles_detail_view(request, id=None):
     article_obj = None
