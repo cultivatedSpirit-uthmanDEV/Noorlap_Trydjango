@@ -15,15 +15,15 @@ class ArticleForm(forms.ModelForm):
       model = Articles
       fields = ['title', 'content']
 
-def clean(self):
-    data = self.cleaned_data
-    title = data.get("title")
-    qs = Articles.objects.filter(title__icontains=title)
+   def clean(self):
+        data = self.cleaned_data
+        title = data.get("title")
+        qs = Articles.objects.filter(title__icontains=title)
 
-    if qs.exists():
-        self.add_error("title", f"{title} is already in use.")
+        if qs.exists():
+            self.add_error("title", f"{title} is already in use. Please take another title")
 
-    return data
+        return data
 
 """
 class ArticleForm(forms.Form):

@@ -44,8 +44,8 @@ def articles_create_view(request):
         article_object = Articles.objects.create(title=title, content=content)
         """
 
-#        context['object'] = article_object
- #       context['created'] = True
+        context['object'] = article_object
+        context['created'] = True
         
     return render(request, "articles/create.html", context=context )
 

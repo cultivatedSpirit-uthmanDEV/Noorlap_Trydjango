@@ -4,28 +4,35 @@
 
 {% block content %}
 {% if not request.user.is_authenticated %}
-<form method="POST" style="margin: 10px;">
-  {% csrf_token %}
-  {% if error %}
-  <p style="color:red">{{ error }}</p>
-  {% endif %}
-  <div>
-    <input type="text" name="username"
-     placeholder="username" />
-  </div>
-  <div>
-    <input type="password" name="password" 
-    placeholder="password"/> 
-  </div>
-  <button type="submit">Login</button>
+<div>
+    <form method="POST" style="margin: 10px;">
+      {% csrf_token %}
+      {% if error %}
+      <p style="color:red">{{ error }}</p>
+      {% endif %}
+      <div>
+        <input type="text" name="username"
+        placeholder="username"/>
+      </div>
+      <div>
+        <input type="password" name="password" 
+        placeholder="password"/> 
+      </div>
+      <div>
+      <button type="submit">Login</button>
+      </div>
 
+    </form>
+    <p>Already have account? Please <a href="/login/" >login</a></p>
+    <p>Need an account? Please <a href="/register/">Register</p>
+
+</div>
 {% else %}
   <p>You're already logged in, would you like to logout? <a href='/logout/'>Logout</a>
   </p>
 {% endif %}
 
 
-</form>
 
 
 {% endblock %}
