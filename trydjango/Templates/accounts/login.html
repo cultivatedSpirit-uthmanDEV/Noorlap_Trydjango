@@ -7,18 +7,7 @@
 <div>
     <form method="POST" style="margin: 10px;">
       {% csrf_token %}
-      {% if error %}
-      <p style="color:red">{{ error }}</p>
-      {% endif %}
-      <div>
-        <input type="text" name="username"
-        placeholder="username"/>
-      </div>
-      <div>
-        <input type="password" name="password" 
-        placeholder="password"/> 
-      </div>
-      <div>
+      {{ form.as_p }}
       <button type="submit">Login</button>
       </div>
 
