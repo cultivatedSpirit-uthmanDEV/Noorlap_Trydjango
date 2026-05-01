@@ -11,3 +11,9 @@ bash: db.sqlite3: command not found
 bash: .env: command not found
 bash: .DS_Store: command not found
 (venv) 
+
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
