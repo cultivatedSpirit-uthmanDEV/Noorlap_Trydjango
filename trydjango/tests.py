@@ -1,0 +1,26 @@
+from django.test import TestCase
+from django.conf import settings
+import os
+from django.contrib.auth.password_validation import validate_password
+
+
+
+# preventing making of bad secret code
+class TryDjangoConfigTest(TestCase):
+
+  """def test_adhkkjhrkkkjnb(self):
+    self.assertTrue(1==1)"""
+
+  def test_secret_key_strength(self):
+      SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+      #self.assertNotEqual(SECRET_KEY, 'abc132')
+
+      try:
+         is_strong = validate_password(SECRET_KEY)
+      except Exception as e:
+         msg = f'Bad Secret Key {e.messages}'
+         self.fail(e)
+
+    
+    
+    
