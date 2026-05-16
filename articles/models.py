@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django.db.models.signals import pre_save, post_save
 
 # Create your models here.
 class Articles(models.Model):
@@ -12,12 +13,30 @@ class Articles(models.Model):
       publish = models.DateField(auto_now_add=False, auto_now=False, null=True, blank=True)
 
 
-
-      def save(self, *args, **kwargs):
+        
+      """def save(self, *args, **kwargs):
             if self.slug is None:
               self.slug = slugify(self.title)
-              super().save(*args, **kwargs)
+            super().save(*args, **kwargs)"""
+      
+      
+def article_pre_save(sender, instance, *args, **kwargs):
+           #print('pre_save')
+          if instance.slug is None:
+             instance.slug = slugify(instance.title)
 
+pre_save.connect(article_pre_save, sender=Articles)
+
+
+def article_post_save(sender, instance, created, *args, **kwargs):
+           #print('post_save')
+     if created:
+          instance.slug = "this is my slug"
+          instance.save()
+
+               
+post_save.connect(article_post_save, sender=Articles)
+      
 
 
 
